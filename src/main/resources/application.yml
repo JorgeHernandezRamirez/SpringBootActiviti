@@ -1,0 +1,5 @@
+spring:
+   activiti:
+      mailServerHost: localhost
+      mailServerPort: 7102
+      mailServerDefaultFrom: admin@jorgehernandezramirez.com

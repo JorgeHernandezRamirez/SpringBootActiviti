@@ -1,0 +1,38 @@
+group 'com.jorgehernandezramirez.spring.springboot.bpm'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'maven'
+apply plugin: 'spring-boot'
+
+sourceCompatibility = 1.8
+
+springBoot {
+    mainClass = "com.jorgehernandezramirez.spring.springboot.bmp.activiti.Application"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.activiti', name: 'activiti-spring-boot-starter-basic', version: activiti_version
+    compile group: 'org.activiti', name: 'activiti-spring-boot-starter-rest-api', version: activiti_version
+    compile group: 'org.activiti', name: 'activiti-spring-boot-starter-actuator', version: activiti_version
+    compile group: 'org.activiti', name: 'activiti-spring-boot-starter-jpa', version: activiti_version
+    compile("com.h2database:h2")
+    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: groovy_version
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile group: 'org.subethamail', name: 'subethasmtp-wiser', version: wiser_version
+}
