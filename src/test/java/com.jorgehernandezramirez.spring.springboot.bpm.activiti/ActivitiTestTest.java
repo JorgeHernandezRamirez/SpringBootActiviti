@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -32,9 +33,6 @@ public class ActivitiTestTest {
 
     @Autowired
     private RuntimeService runtimeService;
-
-    @Autowired
-    private TaskService taskService;
 
     @Autowired
     private HistoryService historyService;
@@ -60,7 +58,7 @@ public class ActivitiTestTest {
             put(USER, userEntity);
         }});
         processEngine.getRuntimeService().signal(processInstance.getId());
-        assertEquals(1, historyService.createHistoricProcessInstanceQuery().finished().count());
+        assertEquals(2, historyService.createHistoricProcessInstanceQuery().finished().count());
     }
 
     private UserEntity prepareAndBuildUser(final String userId, final String name, final String phone, final String email){
