@@ -43,9 +43,6 @@ public class ActivitiTestTest {
     @Autowired
     private Wiser wiser;
 
-    @Autowired
-    private ProcessEngine processEngine;
-
     @Before
     public void initialization() {
         wiser.start();
@@ -57,7 +54,7 @@ public class ActivitiTestTest {
         final ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(INTERVIEW_PROCESS_ID, new HashMap<String, Object>(){{
             put(USER, userEntity);
         }});
-        processEngine.getRuntimeService().signal(processInstance.getId());
+        runtimeService.signal(processInstance.getId());
         assertEquals(2, historyService.createHistoricProcessInstanceQuery().finished().count());
     }
 
